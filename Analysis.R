@@ -1,11 +1,12 @@
+# Load libraries
+
 library(dplyr)
 library(ggplot2)
 library(lubridate)
 library(XML)
 
 #load apple health export.xml file
-setwd("~/Desktop")
-xml <- xmlParse("~/Desktop/export.xml")
+xml <- xmlParse("~/data/export.xml")
 
 
 #transform xml file to data frame - select the Record rows from the xml file

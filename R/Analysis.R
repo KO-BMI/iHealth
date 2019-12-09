@@ -1,23 +1,26 @@
 # Load libraries
-
+#=====================================
 library(dplyr)
 library(ggplot2)
 library(lubridate)
 library(XML)
+#=====================================
 
 #load apple health export.xml file
-xml <- xmlParse("~/data/export.xml")
-
+xml <- xmlParse("data/export.xml")
+#=====================================
 
 #transform xml file to data frame - select the Record rows from the xml file
+#=====================================
 df <- XML:::xmlAttrsToDataFrame(xml["//Record"])
 str(df)
-
 #make value variable numeric
+#=====================================
 df$value <- as.numeric(as.character(df$value))
 str(df)
 
 #make endDate in a date time variable POSIXct using lubridate with eastern time zone
+#=====================================
 df$endDate <-ymd_hms(df$endDate,tz="America/New_York")
 str(df)
 
@@ -44,6 +47,7 @@ df %>%
   scale_fill_brewer() +
   theme_bw() +  
   theme(panel.grid.major = element_blank())
+#================================================================
 
 #==== convert to miles?
 
@@ -79,7 +83,7 @@ df %>%
   #theme(panel.grid.major = element_blank())+
   theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
   geom_line(aes(color='red')) 
-
+#================================================================
 #boxplot data by month by year
 df %>%
   filter(type == 'HKQuantityTypeIdentifierStepCount') %>%
@@ -92,7 +96,7 @@ df %>%
   scale_fill_brewer() +
   theme_bw() +  
   theme(panel.grid.major = element_blank())
-
+#================================================================
 #summary statistics by month for 2015
 df %>%
   filter(type == 'HKQuantityTypeIdentifierStepCount') %>%
@@ -104,7 +108,7 @@ df %>%
             median = round(median(steps), 2), max = round(max(steps), 2), 
             min = round(min(steps), 2),`25%`= quantile(steps, probs=0.25),
             `75%`= quantile(steps, probs=0.75))
-
+#================================================================
 #boxplot data by day of week year
 df %>%
   filter(type == 'HKQuantityTypeIdentifierStepCount') %>%
@@ -117,7 +121,7 @@ df %>%
   scale_fill_brewer() +
   theme_bw() +  
   theme(panel.grid.major = element_blank())
-
+#================================================================
 #summary statistics by day of week for 2015
 df %>%
   filter(type == 'HKQuantityTypeIdentifierStepCount') %>%
@@ -130,7 +134,7 @@ df %>%
             min = round(min(steps), 2),`25%`= quantile(steps, probs=0.25),
             `75%`= quantile(steps, probs=0.75)) %>%
   arrange(desc(median))
-
+#================================================================
 #heatmap day of week hour of day
 df %>%
   filter(type == 'HKQuantityTypeIdentifierStepCount') %>%
@@ -147,10 +151,7 @@ df %>%
   scale_fill_continuous(labels = scales::comma, low = 'white', high = 'red') +
   theme_bw() + 
   theme(panel.grid.major = element_blank())
-
-
-
-#========
+#================================================================
 #boxplot data by month by year
 df %>%
   filter(type == 'HKQuantityTypeIdentifierHeartRate') %>%
@@ -163,7 +164,7 @@ df %>%
   scale_fill_brewer() +
   theme_bw() +  
   theme(panel.grid.major = element_blank())
-#======
+#================================================================
 df %>%
   filter(type == 'HKQuantityTypeIdentifierActiveEnergyBurned') %>%
   group_by(date,month,year) %>%
@@ -175,7 +176,7 @@ df %>%
   scale_fill_brewer() +
   theme_bw() +  
   theme(panel.grid.major = element_blank())
-#======
+#================================================================
 #summary statistics by day of week for 2015
 df %>%
   filter(type == 'HKQuantityTypeIdentifierStepCount') %>%

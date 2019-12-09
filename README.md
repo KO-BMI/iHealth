@@ -42,8 +42,6 @@ df$hour <-format(df$endDate,"%H")
 str(df)
 ```
 
-
-
 #show steps by month by year using dplyr then graph using ggplot2
 ```{r}
 df %>%
@@ -59,8 +57,7 @@ df %>%
   scale_y_continuous(labels = scales::comma) +
   scale_fill_brewer() +
   theme_bw() +  
-  theme(panel.grid.major = element_blank())
+  theme(panel.grid.major = element_blank())+geom_title("Steps by Month")
 #================================================================
-
-
 ```
+<img src="md_img/stepsbymonths2018.png"/>

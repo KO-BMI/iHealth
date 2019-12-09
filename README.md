@@ -6,7 +6,7 @@ output: html_document
 ---
 ## iHealth - R Analysis of Apple Health Exports
 ## Load Libraries
-```{r}
+```
 #=====================================
 library(dplyr)
 library(ggplot2)
@@ -15,7 +15,7 @@ library(XML)
 ```
 
 ## Data Wrangling
-```{r}
+```
 #=====================================
 #load apple health export.xml file
 xml <- xmlParse("data/export.xml")
@@ -43,7 +43,7 @@ str(df)
 ```
 
 #show steps by month by year using dplyr then graph using ggplot2
-```{r}
+```
 df %>%
   filter(type == 'HKQuantityTypeIdentifierStepCount') %>%
   filter(year==2018) %>%
@@ -60,4 +60,4 @@ df %>%
   theme(panel.grid.major = element_blank())+geom_title("Steps by Month")
 #================================================================
 ```
-<img src="md_img/stepsbymonths2018.png"/>
+<img src="img/stepsbymonths2018.png">

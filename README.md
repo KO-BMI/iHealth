@@ -42,7 +42,7 @@ df$hour <-format(df$endDate,"%H")
 str(df)
 ```
 
-#show steps by month by year using dplyr then graph using ggplot2
+## Show steps by month by year using dplyr then graph using ggplot2
 ```
 df %>%
   filter(type == 'HKQuantityTypeIdentifierStepCount') %>%
@@ -60,4 +60,6 @@ df %>%
   theme(panel.grid.major = element_blank())+geom_title("Steps by Month")
 #================================================================
 ```
-<img src="img/stepsbymonths2018.png">
+
+
+<img src="img/stepsbymonths2018.png

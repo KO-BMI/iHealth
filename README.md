@@ -62,4 +62,4 @@ df %>%
 ```
 
 
-<img src="img/stepsbymonths2018.png
+<img src="img/stepsbymonths2018.png>

@@ -57,7 +57,7 @@ df %>%
   scale_y_continuous(labels = scales::comma) +
   scale_fill_brewer() +
   theme_bw() +  
-  theme(panel.grid.major = element_blank())+geom_title("Steps by Month")
+  theme(panel.grid.major = element_blank())+ggtitle("Steps by Month")
 #================================================================
 ```
 
